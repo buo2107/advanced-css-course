@@ -41,50 +41,48 @@ $color-black: #000;
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   
     position: relative;
-  }
-  
-  .header__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
-  }
-  
-  .header__logo {
-    height: 3.5rem;
-  }
-  
-  .header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+      
+    &__logo {
+        height: 3.5rem;
+    }
+      
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
   }
   
   .heading-primary {
     text-transform: uppercase;
     color: $color-white;
     margin-bottom: 6rem;
-  }
-  
-  .heading-primary span {
-    display: block;
-  }
-  
-  .heading-primary--main {
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-  
-    animation: moveInLeft 1s ease-out;
-  }
-  
-  .heading-primary--sub {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.75rem;
-  
-    animation: moveInRight 1s ease-out;
+
+    &--main {
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+      
+        animation: moveInLeft 1s ease-out;
+    }
+      
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+      
+        animation: moveInRight 1s ease-out;
+    }
   }
   
   @keyframes moveInLeft {
@@ -135,64 +133,72 @@ $color-black: #000;
     }
   }
   
-  .btn:link,
-  .btn:visited {
-    display: inline-block;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    border-radius: 10rem;
-    transition: all 0.2s;
-    position: relative;
+  .btn {
+    &:link,
+    &:visited {
+        display: inline-block;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        border-radius: 10rem;
+        transition: all 0.2s;
+        position: relative;
+    }
+  
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+  
+    &:active {
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.3);
+    }
+
+    /* pseudo element allow us to style certain parts of elements
+        ::after, acts like a virtual element right after the element that we're selecting (child of the selecting element), and we can style the element
+    */
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+  
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--animated {
+        animation: moveInBottom 0.5s ease-out 0.75s;
+        /*
+          Because we used the animation-delay, we can find that before the animation actually starting, the btn element is static exist there on page.
+          We can use animation-fill-mode to resolve this situation:
+              - backwards: the 0% style will be applied before animation starts.
+         */
+        animation-fill-mode: backwards;
+    }
   }
   
-  .btn:hover {
-    transform: translateY(-0.3rem);
-    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
-  }
   
-  .btn:active {
-    transform: translateY(-0.1rem);
-    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.3);
-  }
   
-  .btn--white {
-    background-color: $color-white;
-    color: $color-gray-dark;
-  }
   
-  /* pseudo element allow us to style certain parts of elements
-  ::after, acts like a virtual element right after the element that we're selecting (child of the selecting element), and we can style the element
-   */
-  .btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 10rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all 0.4s;
-  }
   
-  .btn--white::after {
-    background-color: $color-white;
-  }
   
-  .btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-  }
-  
-  .btn--animated {
-    animation: moveInBottom 0.5s ease-out 0.75s;
-    /*
-      Because we used the animation-delay, we can find that before the animation actually starting, the btn element is static exist there on page.
-      We can use animation-fill-mode to resolve this situation:
-          - backwards: the 0% style will be applied before animation starts.
-     */
-    animation-fill-mode: backwards;
-  }
   
