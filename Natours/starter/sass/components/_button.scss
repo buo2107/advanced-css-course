@@ -1,62 +1,62 @@
 .btn {
-    &:link,
-    &:visited {
-        display: inline-block;
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 1.5rem 4rem;
-        border-radius: 10rem;
-        transition: all 0.2s;
-        position: relative;
-    }
-  
-    &:hover {
-        transform: translateY(-0.3rem);
-        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  &:link,
+  &:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+  }
 
-        &::after {
-            transform: scaleX(1.4) scaleY(1.6);
-            opacity: 0;
-        }
-    }
-  
-    &:active {
-        transform: translateY(-0.1rem);
-        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.3);
-    }
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
-    /* pseudo element allow us to style certain parts of elements
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.3);
+  }
+
+  /* pseudo element allow us to style certain parts of elements
         ::after, acts like a virtual element right after the element that we're selecting (child of the selecting element), and we can style the element
     */
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-gray-dark;
+
     &::after {
-        content: "";
-        display: inline-block;
-        height: 100%;
-        width: 100%;
-        border-radius: 10rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        transition: all 0.4s;
+      background-color: $color-white;
     }
-  
-    &--white {
-        background-color: $color-white;
-        color: $color-gray-dark;
+  }
 
-        &::after {
-            background-color: $color-white;
-        }
-    }
-
-    &--animated {
-        animation: moveInBottom 0.5s ease-out 0.75s;
-        /*
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /*
           Because we used the animation-delay, we can find that before the animation actually starting, the btn element is static exist there on page.
           We can use animation-fill-mode to resolve this situation:
               - backwards: the 0% style will be applied before animation starts.
          */
-        animation-fill-mode: backwards;
-    }
+    animation-fill-mode: backwards;
   }
+}
