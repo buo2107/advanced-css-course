@@ -1,0 +1,23 @@
+.row {
+  display: flex;
+  max-width: $grid-width;
+  justify-content: center;
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+
+  [class^="col-1-"] {
+    flex-grow: 1;
+  }
+
+  [class^="col-2-"] {
+    flex-grow: 2;
+  }
+
+  [class^="col-"] {
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+}
